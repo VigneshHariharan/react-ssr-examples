@@ -1,0 +1,1 @@
+// exposes javascript code that can run in any environment
