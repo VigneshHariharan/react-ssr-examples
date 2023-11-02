@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Card } from './components/Card.jsx'
 // import { note } from './App.module.css'
 // import './App.css'
 // import './index.css';
@@ -19,6 +20,7 @@ function App() {
           count is {count}
         </button>
       </div>
+      <Card></Card>
     </div>
   );
 }

@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "barebones-preview": "babel barebones/server.js --out-file barebones/server.built.js && node barebones/server.built.js",
-    "vite-serve": "node vite-ssr/server.js"
+    "vite-serve": "nodemon vite-ssr/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
