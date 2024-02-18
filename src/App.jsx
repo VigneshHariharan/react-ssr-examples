@@ -1,25 +1,25 @@
-import { useState } from 'react'
+import { Suspense } from 'react'
 import { Card } from './components/Card.jsx'
-// import { note } from './App.module.css'
-// import './App.css'
-// import './index.css';
-      {
-        /* <div className={note}>Note component</div> */
-      }
-
+import { Comments } from './components/Comments.jsx';
+import { Count } from './components/Count.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div>
       <h1>Vite + React client rendered</h1>
       <div className="card">
-        <p>App file rendered in this </p>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <Count text="App file state" ></Count>
       </div>
+      <Suspense
+        fallback={
+          <div>
+            <p>Loading comments....</p>
+          </div>
+        }
+      >
+        <Comments></Comments>
+      </Suspense>
       <Card></Card>
     </div>
   );

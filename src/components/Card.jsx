@@ -1,3 +1,4 @@
+import { Count } from './Count'
 
 export function Card() {
     return (
@@ -16,6 +17,7 @@ export function Card() {
           Paragraph component - Warning: renderToNodeStream is deprecated. Use
           renderToPipeableStream instead.
         </p>
+        <Count text="Card file state"></Count>
       </div>
     );
 }
