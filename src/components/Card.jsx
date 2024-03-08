@@ -14,8 +14,7 @@ export function Card() {
       >
         <h1>Card component Heading</h1>
         <p>
-          Paragraph component - Warning: renderToNodeStream is deprecated. Use
-          renderToPipeableStream instead.
+          Card component trying to build a good one
         </p>
         <Count text="Card file state"></Count>
       </div>

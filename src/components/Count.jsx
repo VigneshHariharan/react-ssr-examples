@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export function Count({ text }) {
   const [count, setCount] = useState(0);

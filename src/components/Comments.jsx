@@ -1,29 +1,29 @@
-import { useCommentsDataWithState } from "../data/useCommentsData.js";
+import { use } from 'react';
 
-function Comments() {
-    const { data } = useCommentsDataWithState();
+function Comments({ getCommentsPromise }) {
 
-    console.log('comments ',data)
-    if(!data) return null
-    return (
-      <div className="comments-container">
-        <h1>Comments: </h1>
-        <div>
-          {Array.isArray(data) && data?.map(({ title, description, id }) => (
-            <div
-              key={id}
-              style={{
-                padding: "4px 8px",
-                fontFamily: "monospace",
-              }}
-            >
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </div>
-          ))}
-        </div>
+  const data = use(getCommentsPromise());
+  // const data = use(fetchData)
+  console.log("comments ", data.results);
+  const newResults = new Array(1000).fill(data.results[0])
+  return (
+    <div className="comments-container">
+      <h1>Pokemons list</h1>
+      <div>
+        {newResults?.map(({ name }) => (
+          <div
+            key={name}
+            style={{
+              padding: "4px 8px",
+              fontFamily: "monospace",
+            }}
+          >
+            <h3>{name}</h3>
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  );
 }
 
 export { Comments }

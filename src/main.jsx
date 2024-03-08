@@ -9,6 +9,4 @@ import './index.css'
 //   </React.StrictMode>,
 // )
 
-console.log('main js root hydrate')
-
 ReactDOM.hydrateRoot(document.getElementById('root'), <App />)

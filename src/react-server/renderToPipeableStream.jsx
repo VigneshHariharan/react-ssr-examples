@@ -1,62 +1,35 @@
 import { renderToPipeableStream } from "react-dom/server";
 import App from "../App";
-import { DataProvider } from '../data/useAppContext';
+import { fetchData } from '../data/serverDataUtils'
 
-function Root({ data }) {
+function Root({ getCommentsPromise }) {
   return (
-    <html id="root">
-      <DataProvider data={data}>
-        <App />
-      </DataProvider>
+    <html>
+      <body>
+        <div id="root">
+            <App getCommentsPromise={getCommentsPromise} />
+        </div>
+      </body>
     </html>
   );
 }
 
 // res: response object
-export const render = (res) => {
-    const serverData = createServerData();
-    const stream = renderToPipeableStream(<Root data={serverData} />, {
-      bootstrapModules: ['/assets'],
-      onShellReady() {
-        stream.pipe(res)
+export const render = async (res) => {
+    const stream = renderToPipeableStream(
+      <Root getCommentsPromise={fetchData} />,
+      {
+        // bootstrapModules: ["/assets"],
+        onShellReady() {
+          console.log('stream pipe',res)
+          stream.pipe(res);
+        },
+        progressiveChunkSize: 1000,
+        onError: (error) => {
+          console.log("Server error thrown due to: ",error)
+        }
       }
-    });
+    );
 };
 
 
-const API_DELAY = 2500;
-
-function createServerData() {
-  console.log("server data creation started ------");
-  let promise = null;
-  let done = null;
-
-  const read = () => {
-    if (done) return;
-    if (promise) throw promise;
-
-    try {
-        promise = new Promise((resolve) => {
-          setTimeout(() => {
-            done = true;
-            promise = null
-            resolve();
-            console.log('--------promise resolved')
-          }, API_DELAY);
-        });
-    } catch (err) {
-      console.log('err in reading from create server data',err)
-    }
-
-  };
-
-  const readWithPromise = async () => {
-    const pokeData = await fetch('https://pokeapi.co/api/v2/ability/battle-armor');
-    return pokeData;
-  }
-
-  return {
-    read,
-    readWithPromise,
-  };
-}

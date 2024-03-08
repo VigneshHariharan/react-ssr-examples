@@ -3,13 +3,14 @@ import { Card } from './components/Card.jsx'
 import { Comments } from './components/Comments.jsx';
 import { Count } from './components/Count.jsx'
 
-function App() {
+function App({ getCommentsPromise = () => true }) {
+  console.log("APp get", getCommentsPromise);
 
   return (
     <div>
       <h1>Vite + React client rendered</h1>
       <div className="card">
-        <Count text="App file state" ></Count>
+        <Count text="App file state"></Count>
       </div>
       <Suspense
         fallback={
@@ -18,7 +19,7 @@ function App() {
           </div>
         }
       >
-        <Comments></Comments>
+        <Comments getCommentsPromise={getCommentsPromise}></Comments>
       </Suspense>
       <Card></Card>
     </div>
