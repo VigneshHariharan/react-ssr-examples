@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layers</title>
+    <style>
+        body {
+            position: relative;
+            background-color: antiquewhite;
+            margin: 0;
+        }
+        div {
+            padding: 20px;
+            border: 2px solid;
+            background-color: gray;
+            box-sizing: initial;
+        }
+        p {
+            font-size: large;
+        }
+
+        #stack1, #stack2 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+        }
+
+        #stack1 {
+            z-index: 2;
+            top: 200px;
+            left: 400px;
+            scale: 2;
+            will-change: transform;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(180);
+                border-radius: 10px;
+                background-color: rgb(70, 82, 218);
+                color: whitesmoke;
+            }
+
+            50% {
+                transform: rotate(360deg);
+                border-radius: 100px;
+                background-color: rgb(0, 105, 128);
+                color: rgb(221, 218, 50);
+                scale: 2;
+                z-index: 3;
+            }
+
+            100% {
+                transform: rotate(0deg);
+                border-radius: 10px;
+                background-color: rgb(70, 82, 218);
+                color: whitesmoke;
+            }
+        }
+        #stack2 {
+            z-index: 1;
+            top: 500px;
+            left: 160px;
+            animation-duration: 5s;
+            animation-name: rotate;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+        }
+
+        #stack3 {
+            position: absolute;
+            z-index: 4;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+        Background texts for seeing layers
+        </p>
+    </div>
+    <div id="stack1">
+        <p>Stack 1 is shown
+
+            z-index 2
+        </p>
+    </div>
+     <div id="stack2">
+        <p>Stack 2 is shown
+
+            z-index 1
+            z-index 3 on animate
+        </p>
+    </div>
+
+    <div id="stack3">
+        <p> Element only has z-index 4</p>
+    </div>
+
+    <iframe src="https://vigneshhariharan.github.io/Pokemaniac/" width="1000px" height="1000px"></iframe>
+</body>
+</html>
