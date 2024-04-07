@@ -17,6 +17,7 @@ expressServer.get("/renderToString", async (req, res, next) => {
       __dirname,
       "/src/entryServer.jsx"
     );
+    // Bundle the files from the path and return the function 
     const loadedSSRModule = await viteServer.ssrLoadModule(entryServerFilePath);
     const { render } = loadedSSRModule;
 

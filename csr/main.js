@@ -43,6 +43,6 @@ async function load() {
     
 
     console.log('iamge',image)
-    document.body.appendChild(image)
+    // document.body.appendChild(image)
 }
 load()
